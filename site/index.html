@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jelectronics · Verified Electronics Deals</title>
+  <meta name="description" content="Price errors and exceptional sales on laptops, tablets and more from Amazon, Costco and Best Buy, verified daily.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M18 5 9 18h6l-1 9 9-13h-6z' fill='white'/></svg>">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="./">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M13.5 2 5 14h6l-1 8 8.5-12h-6z"/></svg>
+        </span>
+        Jelectronics
+      </a>
+      <div class="updated" id="updated">Loading…</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h1>Today's verified electronics deals</h1>
+      <p id="summary" class="summary"></p>
+      <dl class="stats" id="stats"></dl>
+    </section>
+
+    <div id="sample-banner" class="banner" hidden>
+      Showing sample data. Run <code>python pipeline.py</code> to fetch real deals.
+    </div>
+
+    <section id="featured" class="featured" hidden></section>
+
+    <section class="controls" aria-label="Filters">
+      <div class="chips" id="retailer-filters" role="group" aria-label="Retailer"></div>
+      <div class="chips" id="category-filters" role="group" aria-label="Category"></div>
+      <label class="sort">
+        <span>Sort</span>
+        <select id="sort">
+          <option value="recommended">Recommended</option>
+          <option value="discount">Biggest % off</option>
+          <option value="savings">Biggest $ savings</option>
+          <option value="price">Lowest price</option>
+        </select>
+      </label>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <p id="empty" class="empty" hidden>No deals match these filters.</p>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Deals are found by an AI scout, checked by an independent AI verifier, and published daily. Prices change quickly and price errors may be cancelled by the retailer, so always confirm at checkout.</p>
+  </footer>
+
+  <template id="card-tpl">
+    <article class="card">
+      <a class="card-media" target="_blank" rel="noopener noreferrer">
+        <img loading="lazy" referrerpolicy="no-referrer" alt="">
+        <span class="badge"></span>
+      </a>
+      <div class="card-body">
+        <div class="meta"><span class="retailer"></span><span class="dot">·</span><span class="category"></span></div>
+        <h3 class="headline"></h3>
+        <div class="price-row">
+          <span class="price"></span>
+          <span class="was"></span>
+          <span class="off"></span>
+        </div>
+        <p class="notes"></p>
+        <div class="card-foot">
+          <span class="verified"></span>
+          <a class="btn" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
