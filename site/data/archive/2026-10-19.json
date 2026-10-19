@@ -1,0 +1,48 @@
+{
+  "updated_at": "2026-10-19T22:51:26+00:00",
+  "summary": "Two deals passed today's checks out of 21 candidates: a 2026 LG C6 OLED at $999.99 and an Amazon Fire HD 10 at less than half its usual price. No genuine price errors surfaced today.",
+  "featured_id": "bestbuy-lg-c6-55-oled-2026",
+  "stats": {
+    "candidates": 21,
+    "verified": 2,
+    "rejected": 10
+  },
+  "deals": [
+    {
+      "id": "bestbuy-lg-c6-55-oled-2026",
+      "title": "LG 55\" Class C6 OLED evo AI 4K Smart webOS TV (2026)",
+      "retailer": "Best Buy",
+      "category": "TV",
+      "deal_type": "major_discount",
+      "url": "https://www.bestbuy.com/product/lg-55-class-c6-oled-evo-ai-4k-smart-webos-tv-with-perfect-black-perfect-color-and-brightness-booster-2026/JJ8VPZKKP3",
+      "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/96291294-d00c-422c-88d6-5da3328f414e.jpg",
+      "price": 999.99,
+      "regular_price": 1399.99,
+      "discount_pct": 29,
+      "confidence": 70,
+      "in_stock": true,
+      "headline": "LG 55-inch C6 OLED (2026) drops to $999.99 at Best Buy",
+      "notes": "Also $999.99 at Amazon. Usually sells for about $1,399.99, so the real saving is roughly 29% (not the 50% off MSRP shown at checkout).",
+      "first_seen": "2026-10-19T22:51:26+00:00",
+      "last_verified": "2026-10-19T22:51:26+00:00"
+    },
+    {
+      "id": "amazon-fire-hd-10-4gb-32gb",
+      "title": "Amazon Fire HD 10 Tablet, 4GB RAM, 32GB (Black)",
+      "retailer": "Amazon",
+      "category": "Tablet",
+      "deal_type": "major_discount",
+      "url": "https://www.amazon.com/dp/B0GVTPKJVT",
+      "image_url": "https://m.media-amazon.com/images/I/61EfgCU1k7L._AC_SL1000_.jpg",
+      "price": 72.99,
+      "regular_price": 154.99,
+      "discount_pct": 53,
+      "confidence": 85,
+      "in_stock": true,
+      "headline": "Amazon Fire HD 10 (4GB/32GB) falls to $72.99",
+      "notes": "Limited-time deal, sold and shipped by Amazon. Typically $154.99. Includes lockscreen ads.",
+      "first_seen": "2026-10-19T22:51:26+00:00",
+      "last_verified": "2026-10-19T22:51:26+00:00"
+    }
+  ]
+}
