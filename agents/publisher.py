@@ -59,12 +59,18 @@ def merge(candidates: list[Candidate], verifications: list[Verification], now: s
     return deals
 
 
-def run(candidates: list[Candidate], verifications: list[Verification], rejected_count: int) -> dict:
+def run(
+    candidates: list[Candidate],
+    verifications: list[Verification],
+    rejected_count: int,
+    report: PublisherReport | None = None,
+) -> dict:
+    """Write the site data. Pass `report` to use editorial copy written elsewhere instead of calling the API."""
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     deals = merge(candidates, verifications, now)
 
     summary, featured = "No deals passed verification today. Check back tomorrow.", None
-    if deals:
+    if deals and report is None:
         report = run_agent(
             name="publisher",
             system=SYSTEM,
@@ -73,6 +79,7 @@ def run(candidates: list[Candidate], verifications: list[Verification], rejected
             tools=[],
             effort="low",
         )
+    if deals and report is not None:
         headlines = {p.id: p.headline for p in report.picks}
         for d in deals:
             d.headline = headlines.get(d.id, d.headline)

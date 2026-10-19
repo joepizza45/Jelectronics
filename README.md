@@ -10,13 +10,17 @@ Three Claude agents run in sequence every day:
 | **Verifier** | `agents/verifier.py` | Opens each candidate on the live retailer page, checks price, stock and the "regular price" claim, and marks it `verified`, `uncertain` or `rejected` with a confidence score. |
 | **Publisher** | `agents/publisher.py` | Keeps only verified deals with confidence ≥ 60, writes headlines and a daily summary, picks a featured deal, and writes `site/data/deals.json` (plus a dated copy in `site/data/archive/`). |
 
-The site in `site/` is static HTML/CSS/JS that reads `deals.json`, so it can be hosted anywhere. A GitHub Actions workflow runs the pipeline daily and deploys the site to GitHub Pages.
+The site in `site/` is static HTML/CSS/JS that reads `deals.json`, so it can be hosted anywhere. Every push that changes `site/` redeploys it to GitHub Pages (`.github/workflows/deploy.yml`).
 
-## Setup
+## Daily runs without an API key (default)
 
-1. **API key:** in the GitHub repo, go to *Settings → Secrets and variables → Actions* and add `ANTHROPIC_API_KEY`.
-2. **Pages:** in *Settings → Pages*, set *Source* to **GitHub Actions**.
-3. **Run it:** *Actions → Daily deals update → Run workflow*, or wait for the daily schedule (12:17 UTC). Each run commits the new data and redeploys the site.
+A daily Claude Code scheduled task runs the three agents as Claude Code subagents (`.claude/agents/deal-*.md`) on your Claude subscription, following `DAILY_RUN.md`, then pushes the new `site/data/` to `main`. No API key or API billing is needed; runs count toward your Claude plan's usage limits.
+
+One-time setup: in the repo's *Settings → Pages*, set *Source* to **GitHub Actions**.
+
+## Daily runs with an API key (optional)
+
+`python pipeline.py` runs the same three agents through the Claude API. To use it from GitHub, add an `ANTHROPIC_API_KEY` repo secret and run *Actions → Deals update (API key)*.
 
 ## Running locally
 
@@ -35,7 +39,7 @@ Each run saves the raw agent output to `runs/<timestamp>/`. To regenerate the si
 - Model: `claude-opus-5-5` by default; override with the `JELECTRONICS_MODEL` env var.
 - Search budgets: `web_tools(...)` calls in `scout.py` and `verifier.py` (`max_uses` caps cost per run).
 - Publish threshold: `MIN_CONFIDENCE` in `publisher.py`.
-- Schedule: the `cron` line in `.github/workflows/daily.yml`.
+- Schedule: the Claude Code scheduled task (view or edit it at claude.ai/code).
 
 ## Notes
 

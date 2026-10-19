@@ -1,18 +1,14 @@
-name: Daily deals update
+# Optional: runs the pipeline through the Claude API instead of Claude Code.
+# Needs an ANTHROPIC_API_KEY repo secret. Manual only; the default daily run is
+# the Claude Code scheduled task described in DAILY_RUN.md.
+name: Deals update (API key)
 
 on:
-  schedule:
-    - cron: "17 12 * * *" # every day, 12:17 UTC (8:17am Eastern)
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: daily-deals
-  cancel-in-progress: false
+  actions: write
 
 jobs:
   update:
@@ -33,25 +29,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python pipeline.py
 
+      # Pushes made with the default GITHUB_TOKEN don't trigger other workflows,
+      # so deploy.yml is started explicitly afterwards.
       - name: Commit updated deals
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "jelectronics-bot"
           git config user.email "jelectronics-bot@users.noreply.github.com"
           git add site/data
           git diff --cached --quiet || git commit -m "Daily deals update $(date -u +%F)"
           git push
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    needs: update
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          gh workflow run deploy.yml --ref main
