@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from .runner import run_agent
@@ -11,6 +11,7 @@ from .schemas import Candidate, PublishedDeal, PublisherReport, Verification
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "site" / "data"
 MIN_CONFIDENCE = 60
+REJECT_MEMORY_DAYS = 14
 
 SYSTEM = """You are the Publisher for Jelectronics, a clean, trustworthy electronics-deals site. You receive deals that have already been verified.
 
@@ -24,6 +25,15 @@ def _load_previous() -> dict[str, dict]:
     if not path.exists():
         return {}
     return {d["id"]: d for d in json.loads(path.read_text()).get("deals", [])}
+
+
+def load_rejected() -> dict[str, str]:
+    """Ids the verifier rejected recently, mapped to the date (YYYY-MM-DD) they were rejected."""
+    path = DATA_DIR / "rejected.json"
+    if not path.exists():
+        return {}
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=REJECT_MEMORY_DAYS)).date().isoformat()
+    return {i: d for i, d in json.loads(path.read_text()).items() if d >= cutoff}
 
 
 def merge(candidates: list[Candidate], verifications: list[Verification], now: str) -> list[PublishedDeal]:
@@ -104,5 +114,7 @@ def run(
     (DATA_DIR / "archive").mkdir(exist_ok=True)
     text = json.dumps(payload, indent=2)
     (DATA_DIR / "deals.json").write_text(text)
+    rejected = load_rejected() | {v.id: now[:10] for v in verifications if v.verdict == "rejected"}
+    (DATA_DIR / "rejected.json").write_text(json.dumps(dict(sorted(rejected.items())), indent=2))
     (DATA_DIR / "archive" / f"{now[:10]}.json").write_text(text)
     return payload

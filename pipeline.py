@@ -34,7 +34,7 @@ def main() -> None:
         run_dir.mkdir(parents=True)
 
         seen = list(publisher._load_previous())
-        found = scout.run(seen)
+        found = scout.run(seen, list(publisher.load_rejected()))
         (run_dir / "scout.json").write_text(found.model_dump_json(indent=2))
         logging.info("Scout found %d candidates", len(found.candidates))
 
