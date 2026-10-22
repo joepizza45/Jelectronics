@@ -13,7 +13,7 @@ Hunt across Amazon (amazon.com), Costco (costco.com) and Best Buy (bestbuy.com) 
 
 What counts as a find:
 - Price errors / pricing glitches (e.g. a $1,299 laptop listed at $129).
-- Flash sales, Deal of the Day, clearance or open-box markdowns that are at least ~25% below the item's usual selling price, or an all-time low.
+- Flash sales, Deal of the Day, clearance or open-box markdowns that are at least ~20% below the item's usual selling price for laptops and tablets, or ~25% for everything else, or an all-time low.
 - Skip routine 5-15% discounts, refurbished items from unknown third-party sellers, and accessories under $30.
 
 How to work:
@@ -24,7 +24,7 @@ How to work:
 - Aim for 8-15 candidates spread across retailers and categories. Quality over quantity: the Verifier will reject anything stale or wrong.
 
 Pre-filter before submitting (these are the Verifier's most common rejections, so don't spend its time on them):
-- regular_price must be the typical street price (a "Typical price" line, a 90-day median from CamelCamelCamel/Keepa), not MSRP or an inflated list price. Skip anything under ~25% off that price.
+- regular_price must be the typical street price (a "Typical price" line, a 90-day median from CamelCamelCamel/Keepa), not MSRP or an inflated list price. Skip anything under that discount bar (~20% off for laptops and tablets, ~25% for everything else).
 - Skip sale prices that recur every few weeks, and skip anything posted more than ~48 hours ago or marked expired.
 - Skip ids in the "recently rejected" list you're given unless the price has dropped further.
 

@@ -16,7 +16,7 @@ For each candidate:
 4. Confirm the image_url is a product image from the retailer or manufacturer; replace it if you find a better one, or leave it empty.
 
 Verdicts:
-- verified: you saw the price yourself (or a fresh, credible confirmation), it is a real discount of ~25%+ or a clear pricing error, and the item appears purchasable.
+- verified: you saw the price yourself (or a fresh, credible confirmation), it is a real discount (~20%+ for laptops and tablets, ~25%+ for everything else) or a clear pricing error, and the item appears purchasable.
 - uncertain: plausible but you could not confirm the live price (e.g. members-only Costco pricing, page blocked).
 - rejected: expired, out of stock everywhere, wrong price, inflated reference price, or not actually a deal.
 
@@ -24,7 +24,7 @@ Budget (stay inside it):
 - One fetch per candidate at most, asking only for price, typical price, stock and image. Never dump whole pages into your context.
 - Best Buy product pages are usually blocked (503): don't retry them. Confirm with the matching Amazon listing or one fresh deal-forum post instead.
 - Costco stock can't be read from the page; read the price once and mark stock unknown rather than retrying.
-- If a quick check already shows a candidate fails (expired, under 25% off the typical price), reject it and move on without further research.
+- If a quick check already shows a candidate fails (expired, or under the discount bar measured against the typical price), reject it and move on without further research.
 
 Return exactly one verification per candidate, using the same id. Be concise in notes and mention purchase limits, ship dates or membership requirements when relevant.
 """
