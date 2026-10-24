@@ -1,30 +1,11 @@
 {
-  "updated_at": "2026-10-23T13:55:37+00:00",
-  "summary": "A quiet morning: no new deal cleared today's checks, including laptops under the new 20% bar. The HP OMEN 27-inch 280Hz monitor at Costco is still reported at $199.97.",
-  "featured_id": "costco-hp-omen-27qs-g2-qhd-280hz",
+  "updated_at": "2026-10-24T13:54:56+00:00",
+  "summary": "No deals passed verification today. Check back tomorrow.",
+  "featured_id": null,
   "stats": {
-    "candidates": 2,
-    "verified": 1,
+    "candidates": 0,
+    "verified": 0,
     "rejected": 0
   },
-  "deals": [
-    {
-      "id": "costco-hp-omen-27qs-g2-qhd-280hz",
-      "title": "HP OMEN 27\" QHD 280Hz IPS Gaming Monitor (27qs G2)",
-      "retailer": "Costco",
-      "category": "Monitor",
-      "deal_type": "major_discount",
-      "url": "https://www.costco.com/p/-/omen-27-qhd-2560-x-1440-280hz-gaming-monitor/4201010574",
-      "image_url": "https://gdx-assets.costco.com/adobe/assets/urn:aaid:aem:8cd2f08e-6ddc-4f97-9dd6-9b4a7e312011/as/4201010574-847__1.avif",
-      "price": 199.97,
-      "regular_price": 319.99,
-      "discount_pct": 38,
-      "confidence": 70,
-      "in_stock": null,
-      "headline": "HP OMEN 27-inch QHD 280Hz monitor still $199.97 at Costco",
-      "notes": "Costco member price of $199.97 with free shipping, about 38% below the typical $319.99 street price; Costco membership required. Availability varies by warehouse; check your local Costco.",
-      "first_seen": "2026-10-21T02:37:45+00:00",
-      "last_verified": "2026-10-23T13:55:37+00:00"
-    }
-  ]
+  "deals": []
 }
