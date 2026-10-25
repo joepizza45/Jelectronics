@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-24T13:54:56+00:00",
+  "updated_at": "2026-10-25T13:55:40+00:00",
   "summary": "No deals passed verification today. Check back tomorrow.",
   "featured_id": null,
   "stats": {
-    "candidates": 0,
+    "candidates": 1,
     "verified": 0,
     "rejected": 0
   },
